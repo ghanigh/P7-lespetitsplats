@@ -1,154 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Les petits plats, site de recettes de cuisine." />
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
-
-    <!-- favicon -->
-    <link rel="shortcut icon" href="#" />
-    <link rel="icon" type="image/ico" href="assets/icons/favicon.ico">
-
+    <link rel="stylesheet" href="./css/style.css">
     <title>Les Petits Plats</title>
 </head>
-
 <body>
-    <!-- container -->
-    <div class="container">
-        <!-- header -->
-        <header>
-            <!-- lien -->
-            <a href="index.html">
-                <!-- logo -->
-                <img class="logo" id="logo" src="assets/img/logo.svg" alt="logo, Les Petits Plats" />
-            </a>
-        </header>
-        <!-- Fin du header -->
-
-        <!-- searchBar -->
-        <div class="search">
-            <div class="search-recipes">
-                <input class="search-all-recipes" id="search-all-recipes" type="search"
-                    placeholder="Rechercher une recette, un ingrédient, un appareil, un ustensile ..." autocomplete="off" />
-                <i class="fas fa-search" id="search"></i>
-            </div>
-        </div>
-        <!-- Fin de searchBar -->
-
-        <!-- Affichage des tags sélectionnés -->
-        <div id="tags" class="tags">
-            <!-- <div id="tagsIngr" class="tagsIngr"></div>
-            <div id="tagsAppl" class="tagsAppl"></div>
-            <div id="tagsUst" class="tagsUst"></div> -->
-        </div>
-        <!-- Fin de l'affichage des tags sélectionnés -->
-
-        <!-- Dropdowns -->
-        <div id="absolute">
-            <!-- Recherche -->
-            <div class="search">
-                <!-- Menus déroulants -->
-                <div id="drop">
-                    <!-- Ingrédients -->
-                    <div class="drop drop-ingredients">
-                        <!-- Fermé -->
-                        <div id="drop-ingredients_closed" class="drop-menu_closed">
-                            <input type="text" id="ingredients" class="drop-input_closed drop-input_ingredients"
-                                placeholder="Ingrédients" value="Ingrédients" autocomplete="off" />
-                            <i class="fas fa-chevron-down" id="ingredients-down"></i>
-                        </div>
-                        <!-- Fin de la version fermée -->
-                        <!-- Ouvert -->
-                        <div id="drop-ing_open" class="drop-all_open drop-menu_open">
-                            <!-- Recherche et ingrédient -->
-                            <div class="search-drop_all search-ing_all">
-                                <input class="search-drop" id="search-drop_ing" type="search"
-                                    placeholder="Rechercher un ingrédient" autocomplete="off" />
-                                <i class="fas fa-chevron-up" id="ingredients-up"></i>
-                            </div>
-                            <!-- Fin de la recherche et de l'ingrédient -->
-                            <!-- Liste des ingrédients -->
-                            <div id="drop-ingredients_open" class="drop-menu_open"></div>
-                            <!-- Fin de la liste des ingrédients -->
-                        </div>
-                        <!-- Fin de la version ouverte -->
-                    </div>
-                    <!-- Fin des ingrédients -->
-                    <!-- Appareils -->
-                    <div class="drop drop-appareil">
-                        <!-- Fermé -->
-                        <div id="drop-appareil_closed" class="drop-menu_closed">
-                            <input type="text" id="appareil" class="drop-input_closed drop-input_appareil"
-                                placeholder="Appareil" value="Appareil" autocomplete="off" />
-                            <i class="fas fa-chevron-down" id="appareil-down"></i>
-                        </div>
-                        <!-- Fin de la version fermée -->
-                        <!-- Ouvert -->
-                        <div id="drop-app_open" class="drop-all_open drop-menu_open">
-                            <!-- Recherche et appareil -->
-                            <div class="search-drop_all search-app_all">
-                                <input class="search-drop" id="search-drop_app" type="search"
-                                    placeholder="Rechercher un appareil" autocomplete="off" />
-                                <i class="fas fa-chevron-up" id="appareil-up"></i>
-                            </div>
-                            <!-- Fin de la recherche et de l'appareil -->
-                            <!-- Liste des appareils -->
-                            <div id="drop-appareil_open" class="drop-menu_open"></div>
-                            <!-- Fin de la liste des appareils -->
-                        </div>
-                        <!-- Fin de la version ouverte -->
-                    </div>
-                    <!-- Fin des appareils -->
-                    <!-- Ustensiles -->
-                    <div class="drop drop-ustensiles">
-                        <!-- Fermé -->
-                        <div id="drop-ustensiles_closed" class="drop-menu_closed">
-                            <input type="text" id="ustensiles" class="drop-input_closed drop-input_ustensiles"
-                                placeholder="Ustensiles" value="Ustensiles" autocomplete="off" />
-                            <i class="fas fa-chevron-down" id="ustensiles-down"></i>
-                        </div>
-                        <!-- Fin de la version fermée -->
-                        <!-- Ouvert -->
-                        <div id="drop-ust_open" class="drop-all_open drop-menu_open">
-                            <!-- Recherche et ustensiles -->
-                            <div class="search-drop_all search-ust_all">
-                                <input class="search-drop" id="search-drop_ust" type="search"
-                                    placeholder="Rechercher un ustensile" autocomplete="off" />
-                                <i class="fas fa-chevron-up" id="ustensiles-up"></i>
-                            </div>
-                            <!-- Fin de la recherche et des ustensiles -->
-                            <!-- Liste des ustensiles -->
-                            <div id="drop-ustensiles_open" class="drop-menu_open"></div>
-                            <!-- Fin de la liste des ustensiles -->
-                        </div>
-                        <!-- Fin de la version ouverte -->
-                    </div>
-                    <!-- Fin des ustensiles -->
+    <header>
+        <!-- Image d'illustration d'un plat comme image de fond -->
+        <img class="header_bg" src="./assets/images/banner_bg.png" alt="image d'illustration d'un plat comme image de fond" />
+        <!-- Logo de l'entreprise Les Petits Plats -->
+        <img class="header_logo"src="./assets/logos/header_logo.png" alt="logo de l'entreprise les petits plats">
+        
+        <div class="search_wrapper">
+            <!-- Titre principal de l'en-tête -->
+            <h1 class="header_hero">CHERCHEZ PARMI PLUS DE 1500 RECETTES 
+                DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES
+            </h1>
+            <form>
+                <!-- Champ de recherche pour les recettes -->
+                <input type="text" id="search_input" placeholder="Rechercher une recette">
+                <div class="input_Xmark">
+                    <!-- Icône X utilisée pour effacer le texte de recherche -->
+                    <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 11.5L7 6.5M7 6.5L2 1.5M7 6.5L12 1.5M7 6.5L2 11.5" stroke="#7A7A7A" stroke-width="2.16667" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </div>
-                <!-- Fin des menus déroulants -->
-            </div>
-            <!-- Fin de la recherche -->
-            <!-- Filtrage vide pour les erreurs de recherche -->
-            <div id="errorFilter">
-                <img id="error-img" src="assets/img/logo.svg" alt=" Les Petits Plats, logo" />
-                <p id="error-text">
-                    «Il n'y a pas de recettes correspondant à votre critère de recherche... <br>
-                    Vous pouvez rechercher une recette, un ingrédient, un appareil, un ustensile etc...»
-                </p>
-            </div>
-            <!-- Fin du filtrage vide -->
-            <!-- Recettes -->
-            <main id="recipes" class="recipes"></main>
-            <!-- Fin des recettes -->
+                <div class="magnifyGlass_bg">
+                    <!-- Icône loupe utilisée pour la recherche -->
+                    <span class="magnifyGlass_circle"></span>
+                    <span class="magnifyGlass_line"></span>
+                </div>
+            </form>
         </div>
-        <!-- Fin de la section absolue -->
-    </div>
-    <!-- Fin du container -->
-
-<!-- javascript -->
-<script src="https://kit.fontawesome.com/1b66eac319.js" crossorigin="anonymous"></script>
+        
+    </header>
+    <main>
+        <section class="filters">
+            <div class="filters_dropdown_wrapper">
+                <div class="drop_btn btn_ingredients">
+                    <div class="drop_top">
+                        <!-- Titre du bouton déroulant pour les ingrédients -->
+                        <p class="text_ingredients">Ingrédients</p>
+                        <!-- Icône chevron utilisée pour indiquer l'état du bouton déroulant -->
+                        <img class="chevron" src="./assets/icons/chevron.svg" alt="chevron" />
+                    </div>
+                    <div class="result result_close">
+                        <input type="text" id="ingredients_search" class="input_dropdown">
+                        <div class="magnifyGlass_bg_small">
+                            <!-- Icône loupe utilisée pour la recherche dans le bouton déroulant -->
+                            <span class="magnifyGlass_circle_small"></span>
+                            <span class="magnifyGlass_line_small"></span>
+                        </div>
+                        <div class="result_list">
+                            <ul class="selected_item"></ul>
+                            <ul class="remaining_list"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop_btn btn_appareils">
+                    <div class="drop_top">
+                        <!-- Titre du bouton déroulant pour les appareils -->
+                        <p class="text_appareils">Appareils</p>
+                        <!-- Icône chevron utilisée pour indiquer l'état du bouton déroulant -->
+                        <img class="chevron" src="./assets/icons/chevron.svg" alt="chevron" />
+                    </div>
+                    <div class="result result_close">
+                        <input type="text" id="appareils_search" class="input_dropdown">
+                        <div class="magnifyGlass_bg_small">
+                            <!-- Icône loupe utilisée pour la recherche dans le bouton déroulant -->
+                            <span class="magnifyGlass_circle_small"></span>
+                            <span class="magnifyGlass_line_small"></span>
+                        </div>
+                        <div class="result_list">
+                            <ul class="selected_item"></ul>
+                            <ul class="remaining_list"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop_btn btn_utensils">
+                    <div class="drop_top">
+                        <!-- Titre du bouton déroulant pour les ustensiles -->
+                        <p class="text_utensils">Ustensiles</p>
+                        <!-- Icône chevron utilisée pour indiquer l'état du bouton déroulant -->
+                        <img class="chevron" src="./assets/icons/chevron.svg" alt="chevron" />
+                    </div>  
+                    <div class="result result_close">
+                        <input type="text" id="utensils_search" class="input_dropdown">
+                        <div class="magnifyGlass_bg_small">
+                            <!-- Icône loupe utilisée pour la recherche dans le bouton déroulant -->
+                            <span class="magnifyGlass_circle_small"></span>
+                            <span class="magnifyGlass_line_small"></span>
+                        </div>
+                        <div class="result_list">
+                            <ul class="selected_item"></ul>
+                            <ul class="remaining_list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="recipes_counter">
+                <!-- Compteur de recettes -->
+            </div>
+            <div class="filters_tags_wrapper">
+                <!-- Les tags vont ici -->
+            </div>
+        </section>
+        <section id="recipes">
+            <!-- Les articles vont ici -->
+        </section>
+        <section id="error">
+            <!-- Les erreurs vont ici -->
+        </section>
+    </main>
+</body>
+<script src="script/factories/recipes.js"></script>
+</html>
