@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,16 +8,18 @@
     <link rel="stylesheet" href="./css/style.css">
     <title>Les Petits Plats</title>
 </head>
+
 <body>
     <header>
         <!-- Image d'illustration d'un plat comme image de fond -->
-        <img class="header_bg" src="./assets/images/banner_bg.png" alt="image d'illustration d'un plat comme image de fond" />
+        <img class="header_bg" src="./assets/images/banner_bg.png"
+            alt="image d'illustration d'un plat comme image de fond" />
         <!-- Logo de l'entreprise Les Petits Plats -->
-        <img class="header_logo"src="./assets/logos/header_logo.png" alt="logo de l'entreprise les petits plats">
-        
+        <img class="header_logo" src="./assets/logos/header_logo.png" alt="logo de l'entreprise les petits plats">
+
         <div class="search_wrapper">
             <!-- Titre principal de l'en-tête -->
-            <h1 class="header_hero">CHERCHEZ PARMI PLUS DE 1500 RECETTES 
+            <h1 class="header_hero">CHERCHEZ PARMI PLUS DE 1500 RECETTES
                 DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES
             </h1>
             <form>
@@ -25,7 +28,8 @@
                 <div class="input_Xmark">
                     <!-- Icône X utilisée pour effacer le texte de recherche -->
                     <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 11.5L7 6.5M7 6.5L2 1.5M7 6.5L12 1.5M7 6.5L2 11.5" stroke="#7A7A7A" stroke-width="2.16667" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 11.5L7 6.5M7 6.5L2 1.5M7 6.5L12 1.5M7 6.5L2 11.5" stroke="#7A7A7A"
+                            stroke-width="2.16667" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </div>
                 <div class="magnifyGlass_bg">
@@ -35,7 +39,7 @@
                 </div>
             </form>
         </div>
-        
+
     </header>
     <main>
         <section class="filters">
@@ -86,7 +90,7 @@
                         <p class="text_utensils">Ustensiles</p>
                         <!-- Icône chevron utilisée pour indiquer l'état du bouton déroulant -->
                         <img class="chevron" src="./assets/icons/chevron.svg" alt="chevron" />
-                    </div>  
+                    </div>
                     <div class="result result_close">
                         <input type="text" id="utensils_search" class="input_dropdown">
                         <div class="magnifyGlass_bg_small">
@@ -117,4 +121,6 @@
     </main>
 </body>
 <script src="script/factories/recipes.js"></script>
+<script src="script/utils/searchbar.js"></script>
+
 </html>
