@@ -99,3 +99,113 @@ function creerBalise(menu, tag) {
     removeTag(baliseEl, menu);
   })
 }
+// Afficher l'élément sélectionné en haut de la liste dans le menu
+const elementSelectionne = `
+  <div class="selected_list">
+    <li class="selected_item">${tagName}</li>
+    <img id="selected_xmark" src="./assets/icons/filledXmark.svg" alt="Icône d'une croix" />
+  </div>
+`;
+
+menu.insertAdjacentHTML("afterbegin", elementSelectionne);
+
+// Vérifier le clic sur la croix de l'élément sélectionné
+const selected_Xmark = menu.querySelector("#selected_xmark");
+selected_Xmark.addEventListener("click", () => {
+  removeTag(tagEl, menu);
+})
+
+function removeTag(tagEl, menu) {
+  const tagASupprimer = tagEl.querySelector(".tag_content").textContent.toLowerCase();
+  const elementSelectionne = menu.querySelector(".selected_list");
+
+  // Supprimer le tag de la tagList
+  tagList = tagList.filter(tag => tag.toLowerCase() !== tagASupprimer);
+
+  // Supprimer le tag du filtre
+  tagEl.remove();
+
+  // Supprimer l'élément sélectionné
+  elementSelectionne.remove();
+
+  // Réinitialiser les recettes filtrées
+  filteredRecipes = getFilteredRecipes(tagList);
+
+  // Afficher la galerie
+  displayGallery(filteredRecipes);
+}
+
+function getFilteredRecipes() {
+  filteredRecipes = allRecipes;
+  const searchValue = searchBar.value.toLowerCase();
+
+  // METHODE FILTER()
+  filteredRecipes = filteredRecipes.filter(recipe =>
+    recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(searchValue) ||
+      recipe.description.toLowerCase().includes(searchValue) ||
+      recipe.name.toLowerCase().includes(searchValue))
+  )
+
+  // METHODE FILTER() pour les MENUS DÉROULANTS
+  if (tagList.length !== 0) {
+    filteredRecipes = filteredRecipes.filter(recipe =>
+      tagList.every(tag =>
+        recipe.ingredients.some(ingredient =>
+          ingredient.ingredient.toLowerCase().includes(tag) ||
+          recipe.appliance.toLowerCase().includes(tag) ||
+          recipe.ustensils.some(ustensil => ustensil.toLowerCase().includes(tag))
+        )
+      )
+    )
+  }
+
+  // Mettre à jour toutes les listes des menus déroulants
+  updateList();
+
+  // Créer le compteur de recettes
+  recipesCounter();
+  return filteredRecipes;
+}
+
+function updateList() {
+  // Réinitialiser tous les ensembles
+  ingredientSet.clear();
+  applianceSet.clear();
+  utensilSet.clear();
+
+  // Créer un ensemble pour la liste des ingrédients
+  filteredRecipes.forEach((recipe) => {
+    recipe.ingredients.forEach((ingredient) => {
+      const nomIngredient = ingredient.ingredient.toLowerCase();
+      ingredientSet.add(nomIngredient);
+    });
+  });
+
+  // Créer un ensemble pour la liste des appareils
+  filteredRecipes.forEach((recipe) => {
+    const nomAppareil = recipe.appliance.toLowerCase();
+    applianceSet.add(nomAppareil);
+  });
+
+  // Créer un ensemble pour la liste des ustensiles
+  filteredRecipes.forEach((recipe) => {
+    recipe.ustensils.forEach((ustensil) => {
+      utensilSet.add(ustensil.toLowerCase());
+    });
+  });
+
+  // Stocker les listes trouvées et mettre à jour le résultat
+  ingredientList = Array.from(ingredientSet);
+  updateDisplay(ingredientList, ingredientMenu);
+  checkListClick(ingredientList, ingredientMenu);
+  checkInputField(ingredientList, ingredientMenu, ingredientBtn);
+
+  applianceList = Array.from(applianceSet);
+  updateDisplay(applianceList, applianceMenu);
+  checkListClick(applianceList, applianceMenu);
+  checkInputField(applianceList, applianceMenu, applianceBtn);
+
+  utensilList = Array.from(utensilSet);
+  updateDisplay(utensilList, utensilMenu);
+  checkListClick(utensilList, utensilMenu);
+}
