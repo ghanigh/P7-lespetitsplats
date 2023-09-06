@@ -1,54 +1,37 @@
-// Tableau pour stocker toutes les recettes
-let allRecipes = [];
+let allRecipes = []; // Une liste contenant toutes les recettes
+let filteredRecipes = []; // Une liste pour stocker les recettes filtrées
 
-// Tableau pour stocker les recettes filtrées
-let filteredRecipes = [];
+let ingredientList = []; // Une liste pour les ingrédients
+let utensilList = []; // Une liste pour les ustensiles
+let applianceList = []; // Une liste pour les appareils
 
-// Tableau pour stocker la liste des ingrédients
-let ingredientList = [];
+let ingredientNewList = []; // Une nouvelle liste pour les ingrédients
+let utensilNewList = []; // Une nouvelle liste pour les ustensiles
+let applianceNewList = []; // Une nouvelle liste pour les appareils
 
-// Tableau pour stocker la liste des ustensiles
-let utensilList = [];
+let tagList = []; // Une liste pour les tags
+let searchValue = ""; // La valeur de recherche
 
-// Tableau pour stocker la liste des appareils
-let applianceList = [];
 
-// Tableau pour stocker la nouvelle liste des ingrédients
-let ingredientNewList = [];
-
-// Tableau pour stocker la nouvelle liste des ustensiles
-let utensilNewList = [];
-
-// Tableau pour stocker la nouvelle liste des appareils
-let applianceNewList = [];
-
-// Tableau pour stocker la liste des étiquettes
-let tagList = [];
-
-// Valeur utilisée pour la recherche
-let searchValue = "";
-
-// Initialisation du processus
 init();
 
-// Fonction asynchrone pour obtenir la liste des recettes
+// Récupère la liste des recettes
 async function getRecipes() {
   try {
-    const response = await fetch('./data/recipes.json'); // Obtenir les données du fichier JSON
-    const data = await response.json(); // Convertir les données en format JSON
+    const response = await fetch('./data/recipes.json'); // Récupère les données du fichier JSON
+    const data = await response.json(); // Convertit les données au format JSON
     return data;
   } catch (error) {
     console.error(error);
   }
 }
 
-// Fonction d'initialisation
 async function init() {
-  const recipes = await getRecipes(); // Obtenir les recettes
-  allRecipes = recipes.recipes; // Obtenir toutes les recettes
-  filteredRecipes = allRecipes; // Initialiser la liste des recettes filtrées avec toutes les recettes
+  const recipes = await getRecipes(); // Obtient les recettes
+  allRecipes = recipes.recipes; // Stocke toutes les recettes dans la variable allRecipes
+  filteredRecipes = allRecipes; // Initialise la liste des recettes filtrées avec toutes les recettes
 
-  updateList(); // Mettre à jour les listes d'ingrédients, d'ustensiles et d'appareils
-  displayGallery(allRecipes); // Afficher la galerie de recettes
-  recipesCounter(filteredRecipes); // Mettre à jour le compteur de recettes
+  updateList(); // Met à jour les listes d'ingrédients, d'ustensiles et d'appareils
+  displayGallery(allRecipes); // Affiche la galerie de recettes
+  recipesCounter(filteredRecipes); // Met à jour le compteur de recettes
 }
