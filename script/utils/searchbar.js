@@ -2,10 +2,19 @@ const searchBar = document.getElementById("search_input"); // L'élément de la 
 const magnifyGlass = document.querySelector(".magnifyGlass_bg"); // L'icône de loupe
 const xMarkEl = document.querySelector(".input_Xmark"); // L'icône de croix
 
-// Écouteur de clic sur l'icône de loupe
-magnifyGlass.addEventListener("click", () => {
-  effectuerRecherche();
-})
+function effectuerRecherche() {
+  // Filtrer les recettes
+  if (searchBar.value.length >= 3) {
+    // Correction : Appel à la fonction obtenirRecettesFiltrees
+    const filteredRecipes = obtenirRecettesFiltrees();
+    // Réafficher les cartes
+    displayGallery(filteredRecipes); // Correction : appel à displayGallery au lieu de afficherGalerie
+  } else {
+    searchBar.value = "";
+    searchBar.placeholder = "Veuillez entrer au moins 3 caractères...";
+    xMarkEl.classList.remove("XmarkShow");
+  }
+}
 
 // Écouteur des touches "Entrée" et "Échap"
 document.addEventListener("keydown", (e) => {
@@ -26,31 +35,31 @@ xMarkEl.addEventListener("click", () => {
 
 // Écouteur des modifications dans le champ de texte. Affiche la croix après 3 caractères.
 document.addEventListener("input", () => {
-  if (searchBar.value.length !== 0) {
+  if (searchBar.value.length >= 3) { // Correction : >= au lieu de !==
     xMarkEl.classList.add("XmarkShow");
   } else {
     xMarkEl.classList.remove("XmarkShow");
   }
 })
 
-function effectuerRecherche() {
-  // Filtrer les recettes
-  if (searchBar.value.length >= 3) {
-    filteredRecipes = obtenirRecettesFiltrees();
-    // Réafficher les cartes
-    afficherGalerie(filteredRecipes);
-  } else {
-    searchBar.value = "";
-    searchBar.placeholder = "Veuillez entrer au moins 3 caractères...";
-    xMarkEl.classList.remove("XmarkShow");
-  }
+function obtenirRecettesFiltrees() {
+  const searchTerm = searchBar.value.toLowerCase(); // Obtenez la valeur de recherche en minuscules
+
+  // Filtrez les recettes en fonction du terme de recherche
+  const filteredRecipes = allRecipes.filter((recipe) => {
+    // Vérifiez si le nom ou la description de la recette contient le terme de recherche
+    return recipe.name.toLowerCase().includes(searchTerm) || recipe.description.toLowerCase().includes(searchTerm);
+  });
+
+  return filteredRecipes;
 }
 
 function viderRecherche() {
   searchBar.placeholder = "Recherchez une recette";
   searchBar.value = "";
   xMarkEl.classList.remove("XmarkShow");
-  filteredRecipes = obtenirRecettesFiltrees();
+  // Correction : Appel à la fonction obtenirRecettesFiltrees
+  const filteredRecipes = obtenirRecettesFiltrees();
   // Réafficher les cartes
-  afficherGalerie(filteredRecipes);
+  displayGallery(filteredRecipes); // Correction : appel à displayGallery au lieu de afficherGalerie
 }
