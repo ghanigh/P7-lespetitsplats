@@ -78,6 +78,10 @@ function recipesCounter() {
     document.getElementById("error").innerHTML = error;
   } else {
     error = "";
-    document.getElementById("error").innerHTML = error;
+    if (document.getElementById("error")!=null)
+    {
+      document.getElementById("error").innerHTML = error;
+    }
   }
 }
+
