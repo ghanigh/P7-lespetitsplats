@@ -63,3 +63,18 @@ function viderRecherche() {
   // Réafficher les cartes
   displayGallery(filteredRecipes); // Correction : appel à displayGallery au lieu de afficherGalerie
 }
+
+// Gère le clic sur l'icône de recherche
+magnifyGlass.addEventListener("click", () => {
+  // Vérifie si la barre de recherche a au moins 3 caractères
+  if (searchBar.value.length >= 3) {
+    // Effectue une recherche
+    effectuerRecherche();
+  } else {
+    // Affiche un message d'erreur si la recherche est invalide
+    searchBar.value = "";
+    searchBar.placeholder = "Veuillez entrer au moins 3 caractères...";
+    xMarkEl.classList.remove("XmarkShow");
+  }
+});
+
