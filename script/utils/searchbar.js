@@ -77,4 +77,3 @@ magnifyGlass.addEventListener("click", () => {
     xMarkEl.classList.remove("XmarkShow");
   }
 });
-
