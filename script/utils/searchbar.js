@@ -77,3 +77,21 @@ magnifyGlass.addEventListener("click", () => {
     xMarkEl.classList.remove("XmarkShow");
   }
 });
+
+// Écouteur des modifications dans le champ de texte. Effectue la recherche après 3 caractères.
+searchBar.addEventListener("input", () => {
+  if (searchBar.value.length >= 3) {
+    effectuerRecherche();
+  } else {
+    xMarkEl.classList.remove("XmarkShow");
+  }
+});
+
+// Le reste de votre code reste inchangé...
+
+function effectuerRecherche() {
+  // Filtrer les recettes
+  const filteredRecipes = obtenirRecettesFiltrees();
+  // Réafficher les cartes
+  displayGallery(filteredRecipes);
+}
