@@ -85,3 +85,8 @@ function recipesCounter() {
   }
 }
 
+async function init() {
+  
+  // Mise à jour de l'affichage lorsque les filtres sont appliqués
+  updateDisplayOnFilter();
+}

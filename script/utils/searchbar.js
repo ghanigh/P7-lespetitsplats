@@ -78,6 +78,7 @@ magnifyGlass.addEventListener("click", () => {
   }
 });
 
+
 // Écouteur des modifications dans le champ de texte. Effectue la recherche après 3 caractères.
 searchBar.addEventListener("input", () => {
   if (searchBar.value.length >= 3) {

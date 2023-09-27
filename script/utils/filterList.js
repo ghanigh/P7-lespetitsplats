@@ -211,3 +211,19 @@ function updateList() {
     updateDisplay(utensilList, utensilMenu);
     checkListClick(utensilList, utensilMenu);
 }
+// updateCounter.js
+const recetteCountSpan = document.getElementById("recetteCount");
+
+function mettreAJourCompteurRecettes(nombreRecettes) {
+  recetteCountSpan.textContent = nombreRecettes;
+}
+// ... Votre code existant ...
+
+function updateDisplayOnFilter() {
+  // Mettre à jour les recettes filtrées en fonction des filtres sélectionnés
+  filteredRecipes = getFilteredRecipes();
+
+  // Mettre à jour l'affichage
+  displayGallery(filteredRecipes);
+}
+
