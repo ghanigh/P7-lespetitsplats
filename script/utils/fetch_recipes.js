@@ -1,17 +1,12 @@
-let allRecipes = []; // Une liste contenant toutes les recettes
-let filteredRecipes = []; // Une liste pour stocker les recettes filtrées
+let allRecipes = []; // Liste contenant toutes les recettes
+let filteredRecipes = []; // Liste pour stocker les recettes filtrées
 
-let ingredientList = []; // Une liste pour les ingrédients
-let utensilList = []; // Une liste pour les ustensiles
-let applianceList = []; // Une liste pour les appareils
+let ingredientList = []; // Liste pour les ingrédients
+let utensilList = []; // Liste pour les ustensiles
+let applianceList = []; // Liste pour les appareils
 
-let ingredientNewList = []; // Une nouvelle liste pour les ingrédients
-let utensilNewList = []; // Une nouvelle liste pour les ustensiles
-let applianceNewList = []; // Une nouvelle liste pour les appareils
-
-let tagList = []; // Une liste pour les tags
+let tagList = []; // Liste pour les tags
 let searchValue = ""; // La valeur de recherche
-
 
 init();
 
@@ -34,4 +29,73 @@ async function init() {
   updateList(); // Met à jour les listes d'ingrédients, d'ustensiles et d'appareils
   displayGallery(allRecipes); // Affiche la galerie de recettes
   recipesCounter(filteredRecipes); // Met à jour le compteur de recettes
+}
+
+function updateList() {
+  // Réinitialiser les listes
+  ingredientList = [];
+  utensilList = [];
+  applianceList = [];
+
+  // Remplir les listes
+  allRecipes.forEach((recipe) => {
+    recipe.ingredients.forEach((ingredient) => {
+      const ingredientName = ingredient.ingredient.toLowerCase();
+      if (!ingredientList.includes(ingredientName)) {
+        ingredientList.push(ingredientName);
+      }
+    });
+
+    const applianceName = recipe.appliance.toLowerCase();
+    if (!applianceList.includes(applianceName)) {
+        applianceList.push(applianceName);
+    }
+
+    recipe.ustensils.forEach((utensil) => {
+        const utensilName = utensil.toLowerCase();
+        if (!utensilList.includes(utensilName)) {
+            utensilList.push(utensilName);
+        }
+    });
+  });
+}
+
+function updateDisplayOnFilter() {
+  // Mettre à jour les recettes filtrées en fonction des filtres sélectionnés
+  filteredRecipes = getFilteredRecipes();
+
+  // Mettre à jour l'affichage
+  displayGallery(filteredRecipes);
+}
+
+function getFilteredRecipes() {
+  const searchValueLower = searchValue.toLowerCase();
+
+  // Filtre basé sur la recherche
+  filteredRecipes = allRecipes.filter((recipe) => {
+    return (
+      recipe.ingredients.some((ingredient) =>
+        ingredient.ingredient.toLowerCase().includes(searchValueLower)
+      ) ||
+      recipe.appliance.toLowerCase().includes(searchValueLower) ||
+      recipe.ustensils.some((utensil) => utensil.toLowerCase().includes(searchValueLower))
+    );
+  });
+
+  // Filtre basé sur les tags
+  if (tagList.length > 0) {
+    filteredRecipes = filteredRecipes.filter((recipe) => {
+      return tagList.every((tag) => {
+        return (
+          recipe.ingredients.some((ingredient) =>
+            ingredient.ingredient.toLowerCase().includes(tag)
+          ) ||
+          recipe.appliance.toLowerCase().includes(tag) ||
+          recipe.ustensils.some((utensil) => utensil.toLowerCase().includes(tag))
+        );
+      });
+    });
+  }
+
+  return filteredRecipes;
 }
