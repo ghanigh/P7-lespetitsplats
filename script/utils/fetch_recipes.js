@@ -1,9 +1,9 @@
 let allRecipes = []; // Liste contenant toutes les recettes
 let filteredRecipes = []; // Liste pour stocker les recettes filtrées
 
-let ingredientList = []; // Liste pour les ingrédients
-let utensilList = []; // Liste pour les ustensiles
-let applianceList = []; // Liste pour les appareils
+let ingredientList = new Set(); // Utilisation de Set pour éviter les doublons d'ingrédients
+let utensilList = new Set(); // Utilisation de Set pour éviter les doublons d'ustensiles
+let applianceList = new Set(); // Utilisation de Set pour éviter les doublons d'appareils
 
 let tagList = []; // Liste pour les tags
 let searchValue = ""; // La valeur de recherche
@@ -32,30 +32,24 @@ async function init() {
 }
 
 function updateList() {
-  // Réinitialiser les listes
-  ingredientList = [];
-  utensilList = [];
-  applianceList = [];
+  // Réinitialiser les ensembles (utilisation de Set pour éviter les doublons)
+  ingredientList.clear();
+  utensilList.clear();
+  applianceList.clear();
 
-  // Remplir les listes
+  // Remplir les ensembles
   allRecipes.forEach((recipe) => {
     recipe.ingredients.forEach((ingredient) => {
       const ingredientName = ingredient.ingredient.toLowerCase();
-      if (!ingredientList.includes(ingredientName)) {
-        ingredientList.push(ingredientName);
-      }
+      ingredientList.add(ingredientName);
     });
 
     const applianceName = recipe.appliance.toLowerCase();
-    if (!applianceList.includes(applianceName)) {
-        applianceList.push(applianceName);
-    }
+    applianceList.add(applianceName);
 
     recipe.ustensils.forEach((utensil) => {
-        const utensilName = utensil.toLowerCase();
-        if (!utensilList.includes(utensilName)) {
-            utensilList.push(utensilName);
-        }
+      const utensilName = utensil.toLowerCase();
+      utensilList.add(utensilName);
     });
   });
 }

@@ -20,24 +20,14 @@ function displayGallery(filteredRecipes) {
 function createCard(recipe) {
   const { id, description, ingredients, name, time } = recipe;
 
-  let ingredientItems = "";
-  for (let i = 0; i < ingredients.length; i++) {
-    const ingredient = ingredients[i];
-    const ingredientItem = ingredient.ingredient;
-    const quantity = ingredient.quantity ? `${ingredient.quantity}` : " ";
-    const unit = ingredient.unit ? `${ingredient.unit}` : " ";
-
-    // Remplacer l'unité "grammes" par "g" pour une meilleure lisibilité
-    if (unit === "grammes") {
-      ingredient.unit = "g";
-    }
-
-    // Générer les éléments de liste des ingrédients
-    ingredientItems += `<div class="list_item">
-                            <p><strong>${ingredientItem} </strong></p>
-                             <p>${quantity} ${unit}</p>
-                          </div>`;
-  }
+  const ingredientItems = ingredients.map((ingredient) => {
+    const quantity = ingredient.quantity ? `${ingredient.quantity} ${ingredient.unit || ''}` : '';
+    return `
+      <div class="list_item">
+        <p><strong>${ingredient.ingredient}</strong></p>
+        <p>${quantity}</p>
+      </div>`;
+  }).join('');
 
   // Créer la structure HTML de la carte de recette en utilisant des template literals
   const card = `
@@ -78,15 +68,16 @@ function recipesCounter() {
     document.getElementById("error").innerHTML = error;
   } else {
     error = "";
-    if (document.getElementById("error")!=null)
-    {
+    if (document.getElementById("error") != null) {
       document.getElementById("error").innerHTML = error;
     }
   }
 }
 
 async function init() {
-  
   // Mise à jour de l'affichage lorsque les filtres sont appliqués
   updateDisplayOnFilter();
 }
+
+// Appeler la fonction d'initialisation
+init();

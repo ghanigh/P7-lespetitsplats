@@ -36,7 +36,7 @@ xMarkEl.addEventListener("click", () => {
 });
 
 // Écouteur des modifications dans le champ de texte. Affiche la croix après 3 caractères.
-document.addEventListener("input", () => {
+searchBar.addEventListener("input", () => {
   if (searchBar.value.length >= 3) {
     xMarkEl.classList.add("XmarkShow");
   } else {
@@ -89,4 +89,3 @@ searchBar.addEventListener("input", () => {
     xMarkEl.classList.remove("XmarkShow");
   }
 });
-
