@@ -44,7 +44,10 @@ function updateDisplay(list, menu) {
   const remainList = menu.querySelector(".remaining_list");
 
   if (list.length !== 0) {
-    const listEl = list.map((item) => `<li>${item}</li>`).join("");
+    let listEl = "";
+    list.forEach(item => {
+      listEl += `<li>${item}</li>`;
+    });
     remainList.innerHTML = listEl;
   } else if (list.length === 1) {
     const listEl = `<p>${list[0]}</p>`;
